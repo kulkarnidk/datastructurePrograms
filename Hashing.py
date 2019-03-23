@@ -87,6 +87,25 @@ class LinkedList:
             n = n.next
         return values
 
+    def size_of_node(self):
+        """
+        :return:it will return size of the node
+        """
+        current = self.head
+        size = 0
+        while current:
+            size = size + 1
+            current = current.next
+        return size
+
+    def poll_first(self):
+        """
+        :return:it will return first element of the list
+        """
+        self.last_node = self.head
+        self.head = self.head.next
+        return self.last_node.data
+
 """main method"""
 if __name__ == '__main__':
     arr = []
@@ -109,7 +128,6 @@ if __name__ == '__main__':
     print("enter element to search in linked list")
     element = int(input())
     element_hash = element % 11
-    # for i in range(len(words)):
     var = ll[element_hash].search(element)
     print(var)
     if var:
@@ -122,14 +140,22 @@ if __name__ == '__main__':
 
     for i in range(len(ll)):
         print(ll[i].display1())
-    a=[]
-    for i in range(0,11):
-        a.append(ll[element_hash].returnvalue())
-        element_hash+=1
-    print("updated list is: ",end=" ")
-    print(a)
-
-
+    # a=[]
+    # for i in range(0,11):
+    #     a.append(ll[element_hash].returnvalue())
+    #     element_hash+=1
+    # print("updated list is: ",end=" ")
+    # print(a)
+    file = open("Hashing.txt",'w')
+    file.write("")
+    file.close()
+    file1 = open("Hashing.txt",'a')
+    for i in range(11):
+        if ll[i]==None:
+            continue
+        size = ll[i].size_of_node()
+        for j in range(size):
+            file1.write(str(ll[i].poll_first())+" ")
 
 
 
